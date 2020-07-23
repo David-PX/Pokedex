@@ -1,0 +1,41 @@
+ header{
+      box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+ }
+    
+
+      table {
+    width: 80%;
+    height: 50vh;
+    overflow-y: auto;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    padding: 15px;
+    border-radius: 2px;
+    margin: auto;
+    margin-top: 50px;
+}
+
+
+.form-container{
+margin-top:2%;
+padding: 2%;
+box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
+}
+
+.edit{
+
+color: gray;
+
+}
+.delete{
+    color: red;
+}
+
+.view{
+    color:rgba(153, 153, 50, 0.589);
+}
+.view-container{
+
+    margin-top: 3%;
+    
+}
