@@ -1,7 +1,7 @@
 <?php 
 
-require_once "database/metodos.php";
-require_once "database/conexion.php";
+require_once "../database/metodos.php";
+require_once "../database/conexion.php";
 
 ?>
 
@@ -17,7 +17,7 @@ require_once "database/conexion.php";
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/style.css">
 
 
   </head>
@@ -53,7 +53,7 @@ style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-w
         <a class="nav-link" href="#">Lista de pokemons <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="regiones/region.php">Regiones</a>
+        <a class="nav-link" href="#">Regiones</a>
       </li>
      
       
@@ -64,23 +64,21 @@ style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-w
 <div class="col-md-2"></div>
 </div>
   <div class="row">
-      <div class="col-md-2"></div>
-      <div class="col-md-8">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
 <table class="table ">
   <thead class="bg-danger">
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Imagen</th>
+     
       <th scope="col">Nombre</th>
-      <th scope="col">Tipo 1</th>
-      <th scope="col">Tipo 2</th>
-      <th scope="col">Region</th>
-      <th></th>
+     
+      <th>Acciones</th>
     </tr>
   </thead>
 
   <?php $metodos = new Metodos();
-        $sql = "SELECT id,nombre,tipo1,tipo2,movimientos,id_region,imagen FROM pokemon ";
+        $sql = "SELECT id_region,nombre_region FROM regiones ";
          $datos  = $metodos->MostarDatos($sql);
   
          foreach($datos as $data):
@@ -88,16 +86,12 @@ style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-w
   ?>
   <tbody>
     <tr>
-      <th scope="row"><?php echo $data['id'] ?></th>
-   <td><img class="img-thumbnail" width=70px height="70px" src="data:image/JPG;base64,<?php echo base64_encode($data['imagen']); ?>"></td>
-      <td><?php echo $data['nombre'] ?></td>
-      <td><?php echo $data['tipo1'] ?></td>
-      <td><?php echo $data['tipo2'] ?></td>
-      
-      <td><?php echo $data['id_region'] ?></td>
+      <th scope="row"><?php echo $data['id_region'] ?></th>
+  
+      <td><?php echo $data['nombre_region'] ?></td>
       <td><a href="database/eliminar.php?id=<?php echo $data['id'];?>"><span class="material-icons delete">delete</span></a>
       <a href="pokemons/editar.php?id=<?php echo $data['id'];?>"><span class="material-icons edit">create</span></a>
-      <a href="pokemons/ver.php?id=<?php echo $data['id'];?>"><span class="material-icons view">preview</span></a>
+      
       </td>
       
     </tr>
@@ -106,9 +100,42 @@ style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-w
          <?php endforeach; ?>
          
 </table>
-<a href="pokemons/add.php"class="btn btn-primary">Nuevo</a>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Guardar
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <form method="POST" action="">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Region</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+   
+  </div>
+  
+  
+  <button type="submit" class="btn btn-danger">Guardar</button>
+</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-danger">OK</button>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="col-md-2"></div>
+</div>
+<div class="col-md-3"></div>
 </div>
 
 </main>

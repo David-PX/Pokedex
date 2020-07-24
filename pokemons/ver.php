@@ -63,7 +63,7 @@ style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-w
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Lista de pokemons <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="#">Lista de pokemons <span class="sr-only"></span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Regiones</a>

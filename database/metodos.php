@@ -45,8 +45,8 @@ $sql = "DELETE FROM pokemon WHERE id ='$id'";
 return $result = mysqli_query($conexion,$sql);
        }
 
-
-   
+     
+     
 
 
 
