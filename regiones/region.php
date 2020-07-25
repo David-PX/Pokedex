@@ -3,6 +3,11 @@
 require_once "../database/metodos.php";
 require_once "../database/conexion.php";
 
+
+
+
+
+
 ?>
 
 
@@ -26,7 +31,7 @@ require_once "../database/conexion.php";
  
   <div class="navbar navbar-danger bg-danger shadow-sm">
     <div class="container d-flex justify-content-between">
-      <a href="#" class="navbar-brand d-flex align-items-center text-white">
+      <a href="../index.php" class="navbar-brand d-flex align-items-center text-white">
         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
 width="25" height="25"
 viewBox="0 0 226 226"
@@ -50,7 +55,7 @@ style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-w
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Lista de pokemons <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="../index.php">Lista de pokemons <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Regiones</a>
@@ -89,8 +94,8 @@ style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-w
       <th scope="row"><?php echo $data['id_region'] ?></th>
   
       <td><?php echo $data['nombre_region'] ?></td>
-      <td><a href="database/eliminar.php?id=<?php echo $data['id'];?>"><span class="material-icons delete">delete</span></a>
-      <a href="pokemons/editar.php?id=<?php echo $data['id'];?>"><span class="material-icons edit">create</span></a>
+      <td><a  class="btn btn-info btn-lg"  href="eliminarRegion.php?id_region=<?php echo $data['id_region'];?>" ><span class="material-icons delete">delete</span></a>
+    <a  class="btn btn-warning btn-lg"  href="editarRegion.php?id_region=<?php echo $data['id_region'];?>"> <span class=" material-icons edit">create</span> </a>
       
       </td>
       
@@ -100,26 +105,26 @@ style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-w
          <?php endforeach; ?>
          
 </table>
-<!-- Button trigger modal -->
+<!--Modales-->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Guardar
+  Nueva region
 </button>
 
-<!-- Modal -->
+<!-- Modal1 -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Guardar Region</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-       <form method="POST" action="">
+       <form method="POST" action="agregarRegion.php">
   <div class="form-group">
-    <label for="exampleInputEmail1">Region</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <label for="region">Region</label>
+    <input type="text" class="form-control" id="region" name="txtRegion" >
    
   </div>
   

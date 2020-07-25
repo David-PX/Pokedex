@@ -2,6 +2,7 @@
 
 
 require_once "../database/conexion.php";
+require_once"../database/metodos.php";
 $obj = new Conexion();
 $conexion = $obj->conectar();
 $id=$_GET['id'];
@@ -60,13 +61,11 @@ style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-w
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Lista de pokemons <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="../index.php">Lista de pokemons <span class="sr-only">(current)</span></a>
       </li>
+      
       <li class="nav-item">
-        <a class="nav-link" href="#">Tipos de pokemons</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Lista de pokemons</a>
+        <a class="nav-link" href="../regiones/region.php">Regiones</a>
       </li>
       
     </ul>
@@ -122,12 +121,16 @@ style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-w
   </div>
    <div class="form-group">
     <label for="region">Region</label>
-    <select class="form-control" id="region" name="txtRegion"value="<?php echo $ver[4];?>">
-      <option value="1">Kanto</option>
-      <option value="2">Johto</option>
-      <option value="3">Hoenn</option>
-      <option value="4">Sinnoh</option>
-      <option value="5">Kalos</option>
+    <select class="form-control" id="region" name="txtRegion">
+    <?php $metodos = new Metodos();
+        $sql = "SELECT id_region, nombre_region FROM regiones  ";
+         $datos  = $metodos->MostarDatos($sql);
+  
+         foreach($datos as $data):
+  
+  ?>
+      <option value="<?php echo $data['id_region']; ?>"><?php echo $data['nombre_region']; ?></option>
+    <?php endforeach; ?>
     </select>
   </div>
   

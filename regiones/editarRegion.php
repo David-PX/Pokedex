@@ -1,10 +1,23 @@
 <?php 
 
-require_once "database/metodos.php";
-require_once "database/conexion.php";
+require_once "../database/metodos.php";
+require_once "../database/conexion.php";
+
+
+
+
+$obj = new Conexion();
+$conexion = $obj->conectar();
+$id=$_GET['id_region'];
+$sql="SELECT nombre_region
+FROM regiones WHERE id_region='$id'";
+$result=mysqli_query($conexion,$sql);
+$ver=mysqli_fetch_row($result);
+
+
+
 
 ?>
-
 
 <html lang="en"><head>
 
@@ -17,7 +30,7 @@ require_once "database/conexion.php";
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/style.css">
 
 
   </head>
@@ -26,7 +39,7 @@ require_once "database/conexion.php";
  
   <div class="navbar navbar-danger bg-danger shadow-sm">
     <div class="container d-flex justify-content-between">
-      <a href="#" class="navbar-brand d-flex align-items-center text-white">
+      <a href="../index.php" class="navbar-brand d-flex align-items-center text-white">
         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
 width="25" height="25"
 viewBox="0 0 226 226"
@@ -50,10 +63,11 @@ style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-w
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Lista de pokemons <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="../index.php">Lista de pokemons <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="regiones/region.php">Regiones</a>
+        <a class="nav-link" href="region.php
+        ">Regiones</a>
       </li>
      
       
@@ -63,53 +77,25 @@ style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-w
 </div>
 <div class="col-md-2"></div>
 </div>
-  <div class="row">
-      <div class="col-md-2"></div>
-      <div class="col-md-8">
-<table class="table ">
-  <thead class="bg-danger">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Imagen</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">Tipo 1</th>
-      <th scope="col">Tipo 2</th>
-      <th scope="col">Region</th>
-      <th></th>
-    </tr>
-  </thead>
+   <div class="row">
+<div class="col-md-2"></div>
+<div class="col-md-8 card form-container">
+<form action="actualizarRegion.php" method="POST" >
 
-  <?php $metodos = new Metodos();
-        $sql = "SELECT * FROM pokemon INNER JOIN regiones ON pokemon.id_region = regiones.id_region ";
-         $datos  = $metodos->MostarDatos($sql);
+ <input type="text" hidden="" value="<?php echo $id?>" name="id_region">
+    <div class="form-group col-md-6">
+      <label for="nombre">Nombre</label>
+      <input type="text" class="form-control" id="nombre" name="txtNombreRegion" value="<?php echo $ver[0]?>">
+    </div>
+   <div class="form-row">
+
   
-         foreach($datos as $data):
-  
-  ?>
-  <tbody>
-    <tr>
-      <th scope="row"><?php echo $data['id'] ?></th>
-   <td class="<?php echo $data['nombre_region'] ?>"><img class="img-thumbnail" width=70px height="70px" src="data:image/JPG;base64,<?php echo base64_encode($data['imagen']); ?>"></td>
-      <td class="<?php echo $data['nombre_region'] ?>"><?php echo $data['nombre'] ?></td>
-      <td class="<?php echo $data['nombre_region'] ?>"><?php echo $data['tipo1'] ?></td>
-      <td class="<?php echo $data['nombre_region'] ?>"><?php echo $data['tipo2'] ?></td>
-      
-      <td class="<?php echo $data['nombre_region'] ?>" id="filaCol"><?php echo $data['nombre_region'] ?></td>
-      <td class="<?php echo $data['nombre_region'] ?>"><a href="database/eliminar.php?id=<?php echo $data['id'];?>"><span class="material-icons delete">delete</span></a>
-      <a href="pokemons/editar.php?id=<?php echo $data['id'];?>"><span class="material-icons edit">create</span></a>
-      <a href="pokemons/ver.php?id=<?php echo $data['id'];?>"><span class="material-icons view">preview</span></a>
-      </td>
-      
-    </tr>
-    
-  </tbody>
-         <?php endforeach; ?>
-         
-</table>
-<a href="pokemons/add.php"class="btn btn-primary">Nuevo</a>
+  <button type="submit" class="btn btn-danger">Guardar</button>
+</form>
 </div>
 <div class="col-md-2"></div>
 </div>
+
 
 </main>
 
@@ -118,7 +104,7 @@ style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-w
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-<script src="assets/js/app.js"></script>
+
 </body>
 
 

@@ -49,14 +49,12 @@ style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-w
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Lista de pokemons <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="../index.php">Lista de pokemons <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Tipos de pokemons</a>
+        <a class="nav-link" href="../regiones/region.php">Regiones</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Lista de pokemons</a>
-      </li>
+     
       
     </ul>
   </div>
@@ -108,16 +106,23 @@ style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-w
       <input type="text" class="form-control" id="ataque4"name="movimientos[]">
     </div>
   </div>
+  
    <div class="form-group">
     <label for="region">Region</label>
+
     <select class="form-control" id="region" name="txtRegion">
-      <option value="1">Kanto</option>
-      <option value="2">Johto</option>
-      <option value="3">Hoenn</option>
-      <option value="4">Sinnoh</option>
-      <option value="5">Kalos</option>
+    <?php $metodos = new Metodos();
+        $sql = "SELECT id_region, nombre_region FROM regiones  ";
+         $datos  = $metodos->MostarDatos($sql);
+  
+         foreach($datos as $data):
+  
+  ?>
+      <option  value="<?php echo $data['id_region']; ?>"><?php echo $data['nombre_region']; ?></option>
+    <?php endforeach; ?>
     </select>
   </div>
+         
   
   <div class="form-group">
     <label for="foto">Elegir foto...</label>
